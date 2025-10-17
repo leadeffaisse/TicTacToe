@@ -10,7 +10,7 @@ public class Cell {
         this.col = col;
         this.isFree= true;
         this.owner = null;
-        this.representation = "   ";
+        this.representation = " ";
     }
 
     public int getRow() {

@@ -3,20 +3,23 @@ import java.util.Scanner;
 public class TicTacToe {
     private final Board board;
     private Player player1;
+    private Player player2;
     private final Scanner scanner;
 
     public TicTacToe(int size) {
         this.board = new Board(3);
         this.scanner = new Scanner(System.in);
         this.player1 = new Player("O", 1);
+        this.player2 = new Player("X", 2);
     }
 
     public void display() {
         for (int i = 0; i < board.getSize(); i++) {
             System.out.println("-------------");
             for (int j = 0; j < board.getSize(); j++) {
-                System.out.print("|");
+                System.out.print("| ");
                 System.out.print(board.getCell(i, j).getRepresentation());
+                System.out.print(" ");
             }
             System.out.println("|");
         }
@@ -66,10 +69,18 @@ public class TicTacToe {
         board.getCell(row, col).setOwner(player);
     }
 
-    /**public void play() {
+    public void play() {
         display();
+        boolean player1turn = true;
         for (int i = 0; i < board.getLength(); i++) {
-
+            if (player1turn) {
+                getMoveFromPlayer(player1);
+                player1turn = false;
+            } else {
+                getMoveFromPlayer(player2);
+                player1turn = true;
+            }
+            display();
         }
-    }*/
+    }
 }
